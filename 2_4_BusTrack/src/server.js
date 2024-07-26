@@ -23,6 +23,7 @@ app.use('/linhas', linhasRoutes)
 app.use('/motoristas', motoristaRoutes)
 app.use('/onibus', onibusRoutes)
 
+
 app.listen(PORT, ()=>{
     console.log(`Servidor on PORT: ${PORT}`)
 })

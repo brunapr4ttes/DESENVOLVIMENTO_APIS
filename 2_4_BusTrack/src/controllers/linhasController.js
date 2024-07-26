@@ -2,7 +2,7 @@ import conn from '../config/conn.js'
 import {v4 as uuidv4} from 'uuid'
 
 export const postLinhas = (request, response)=>{
-    const {nomeLinha, numeroLinha, itinerario, onibus_id} = request.body
+    const {nomeLinha, numeroLinha, itinerario} = request.body
 
     if(!nomeLinha){
         response.status(400).json({message: 'O nome da linha é obrigatório!'})
@@ -14,10 +14,6 @@ export const postLinhas = (request, response)=>{
     }
     if(!itinerario){
         response.status(400).json({message: 'O itinerário é obrigatório!'})
-        return
-    }
-    if(!onibus_id){
-        response.status(400).json({message: 'O Id do ônibus é obrigatório!'})
         return
     }
 
@@ -51,8 +47,8 @@ export const postLinhas = (request, response)=>{
         const linha_id = uuidv4()
 
         const insertSql = /*sql*/ `
-        insert into linhas(??, ??, ??, ??, ??)
-        values(?, ?, ?, ?, ?)
+        insert into linhas(??, ??, ??, ??)
+        values(?, ?, ?, ?)
         `
 
         const insertSqlData = [
@@ -60,12 +56,10 @@ export const postLinhas = (request, response)=>{
             "nomeLinha",
             "numeroLinha",
             "itinerario",
-            "onibus_id",
             linha_id,
             nomeLinha,
             numeroLinha,
             itinerario,
-            onibus_id
         ]
 
         conn.query(insertSql, insertSqlData, (err)=>{

@@ -3,9 +3,9 @@ import conn from '../config/conn.js'
 const tableOnibus = /*sql*/ `
     create table if not exists onibus(
         onibus_id varchar(60) primary key not null,
-        placa varchar(255) not null,
-        modelo varchar(255) not null,
-        anoFabricacao date not null,
+        placaOnibus varchar(255) not null,
+        modeloOnibus varchar(255) not null,
+        anoFabricacao year not null,
         capacidade int not null,
 
         created_at timestamp default current_timestamp,
